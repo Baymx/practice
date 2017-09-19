@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				/*background:#000;*/
+				overflow: hidden;
+			}
+			canvas{
+				background: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="400px" width="800px">
+			<span>您的浏览器版本过低----</span>
+		</canvas>
+	</body>
+</html>
+<script>
+	function rand(min,max){
+		return parseInt(Math.random()*(max-min)+1)+min;
+	}
+	
+	var myCanvas=document.querySelector("#myCanvas");
+	var o2d=myCanvas.getContext("2d");
+	
+	var winW=document.documentElement.clientWidth;
+	var winH=document.documentElement.clientHeight;
+	
+	myCanvas.width=winW;
+	myCanvas.height=winH;
+	
+	var N=5;
+	var LEN=50;
+	 var oldArr=[];//定义一个数组存放尾巴数据
+	
+	//生成点的信息
+	var aPoint=[]; //[{x,y,iSpeedX,iSpeedY},{},{}]点信息
+	for(var i=0;i<N ;i++){
+		aPoint[i]={
+			x:rand(0,winW),
+			y:rand(0,winH),
+			iSpeedX:rand(-10,10),
+			iSpeedY:rand(-10,10)
+		}
+	}
+	var count=0;
+	var num=null;
+	//绘制
+	setInterval(function(){
+		o2d.clearRect(0,0,myCanvas.width,myCanvas.height);
+		//生成点
+		for(var i=0;i<N;i++){
+			aPoint[i].x+=aPoint[i].iSpeedX;
+            aPoint[i].y+=aPoint[i].iSpeedY;
+            if(aPoint[i].x<=0){
+            	aPoint[i].x=0;
+            	aPoint[i].iSpeedX*=-1;
+            }
+             if(aPoint[i].x>=winW){
+            	aPoint[i].x=winW;
+            	aPoint[i].iSpeedX*=-1;
+            }
+             if(aPoint[i].y<=0){
+            	aPoint[i].y=0;
+            	aPoint[i].iSpeedY*=-1;
+            }
+             if(aPoint[i].y>=winH){
+            	aPoint[i].y=winH;
+            	aPoint[i].iSpeedY*=-1;
+            }
+			drawPoint(aPoint[i]);
+		}
+		//连成线
+		o2d.beginPath();
+		o2d.strokeStyle="aqua";
+		o2d.moveTo(aPoint[0].x,aPoint[0].y);
+		for(var i=1;i<aPoint.length;i++){
+			o2d.lineTo(aPoint[i].x,aPoint[i].y);
+		}
+		o2d.closePath();
+		o2d.stroke();
+		
+		//绘制尾巴
+		var arr=[];
+		for(var i =0;i<aPoint.length;i++){
+			arr[i]={
+				x:aPoint[i].x,
+				y:aPoint[i].y
+			};
+			
+		}
+		oldArr.push(arr);//点移动的信息都存储起来
+		
+		var color=["138,43,226","189,252,201","255,192,203","65,105,225","250,128,114"];
+		count++;
+		if(oldArr.length>LEN){
+			oldArr.shift();
+			if(count>=LEN*4){
+				count=0;
+				num=color[rand(0,5)];
+			}
+		}
+		for(var i=0;i<oldArr.length;i++){
+			o2d.beginPath();
+			var opacity= i/oldArr.length;
+			o2d.strokeStyle="rgba("+num+","+opacity+")";
+			o2d.moveTo(oldArr[i][0].x,oldArr[i][0].y);
+			for(var j= 1 ;j<oldArr[i].length;j++){
+				o2d.lineTo(oldArr[i][j].x,oldArr[i][j].y);
+			}
+			o2d.closePath();
+			o2d.stroke();
+		}
+	},16);
+	
+	function drawPoint(p){
+		 //p 点信息 {x,y,iSpeedX,iSpeedY}
+        var pW=0;
+        var pH=0;
+        o2d.fillStyle='#fff';
+        o2d.fillRect(p.x-pW/2, p.y-pH/2,pW,pH);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+</script>

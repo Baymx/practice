@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background:#000;
+			}
+			canvas{
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="600px" width="800px">
+			<span>浏览器版本太低---</span>
+		</canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	var myCanvas=document.querySelector("#myCanvas");
+	var o2d=myCanvas.getContext('2d');
+	myCanvas.onmousedown=function(e){
+		var e = e||event;
+		o2d.moveTo(e.clientX,e.clientY);
+		myCanvas.onmousemove=function(e){
+			var e = e||event;
+			o2d.lineTo(e.clientX,e.clientY);//画图
+			o2d.stroke();//描边
+		}
+		myCanvas.onmouseup=function(){
+			myCanvas.onmousemove=null;
+		}
+	}
+</script>

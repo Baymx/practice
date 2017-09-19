@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="400px" width="800px"></canvas>
+	</body>
+</html>
+<script>
+	var myCanvas=document.querySelector("#myCanvas");
+	var o2d=myCanvas.getContext("2d");
+	//选色配置
+	o2d.strokeStyle="red";
+	o2d.fillStyle="royalblue";
+	o2d.lineWidth=10;
+	//绘制
+	o2d.moveTo(251,121);
+	o2d.lineTo(367,302);
+	o2d.lineTo(468,120);
+	o2d.closePath();//关闭路径
+	o2d.fill();
+	o2d.stroke();
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background:#000;
+			}
+			canvas{
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="400px" width="800px">
+			<span>您的浏览器版本过低----</span>
+		</canvas>
+	</body>
+</html>
+<script>
+	function rand(n,m){
+		return parseInt(Math.random()*(m-n)+1)+n;
+	}
+	
+	var myCanvas=document.querySelector("#myCanvas");
+	var o2d=myCanvas.getContext("2d");
+	
+	o2d.strokeStyle="aqua";
+	var x=10;
+	var y=100;
+	var w=200;
+	var h=100;
+	var timer=setInterval(function(){
+		o2d.clearRect(0,0,myCanvas.width,myCanvas.height);
+		o2d.strokeRect(x++,y,w,h);
+		if(x==(myCanvas.width-w)){
+			clearInterval(timer);
+		}
+	},16);
+	
+	
+	
+	
+	
+	
+	
+	
+</script>

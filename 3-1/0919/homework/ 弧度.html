@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>666</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 微软雅黑;
+    }
+    body,html{
+      overflow: hidden;
+    }
+
+    #div1 {
+      width: 200px;
+      height: 200px;
+      background: #ccc;
+    }
+    body{
+      background: #000;
+    }
+    canvas{
+      /*width:800px;*/
+      /*height:400px;*/
+      background: #fff;
+    }
+  </style>
+
+  <script>
+    function radianAngle(n){
+      return n*Math.PI/180;
+    }
+    window.onload = function () {
+       oC=document.querySelector('#c1');
+       gd=oC.getContext('2d'); //画笔
+       //获取系统时间
+      
+       auto();
+       setInterval(auto,16);
+    };
+     function auto(){
+	       var d = new Date();
+	       var h = d.getHours();
+	       var m = d.getMinutes();
+	       var s = d.getSeconds();
+	       var ms=d.getMilliseconds();
+
+	       var str=`${zero(h)}:${zero(m)}:${zero(s)}`;
+	       h=h>12?h-12:h;
+	       gd.clearRect(0,0,oC.width,oC.height);
+	       getRadian(150,150,100,0,360,"#99CCFF",20)
+	       getRadian(150,150,120,0,360,"#66CC99",20)
+	       getRadian(150,150,60,0,360,"#CCCCFF",20)
+	       getRadian(150,150,80,0,360,"#996699",20)
+	      
+	       getRadian(150,150,100,0,s*6+ms/1000*6,"#666666",20)//秒
+	       getRadian(150,150,80,0,m*6+s/60*6,"#CCCCCC",20)//分
+	       getRadian(150,150,60,0,h*30+m/60*30,"#6699CC",20)//时
+	       gd.textAlign="center";
+	       gd.font="14px 黑体";
+	       gd.fillText(str,150,150);
+	     
+       }
+     function zero(n){
+     	return n<10?'0'+n:n;
+     }
+    function getRadian(cx,cy,r,start,end,color,width){
+      gd.strokeStyle=color;
+      gd.lineWidth=width;
+      gd.beginPath();
+      gd.arc(cx,cy,r,radianAngle(start-90),radianAngle(end-90),false);
+      gd.stroke();
+    }
+  </script>
+</head>
+<body>
+
+<canvas width="800" height="400"  id="c1">
+  <span>浏览器版.....</span>
+</canvas>
+
+</body>
+</html>

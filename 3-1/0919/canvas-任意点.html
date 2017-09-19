@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				background:#000;
+			}
+			canvas{
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" height="400px" width="800px">
+			<span>您的浏览器版本过低----</span>
+		</canvas>
+	</body>
+</html>
+<script>
+	function rand(n,m){
+		return parseInt(Math.random()*(m-n))+n;
+	}
+	
+	var myCanvas=document.querySelector("#myCanvas");
+	var o2d=myCanvas.getContext("2d");
+	
+	var  pos=[];
+	var N=5;
+	for(var i=0;i<N;i++){    //产生随机坐标
+		pos[i]={
+			x:rand(0,myCanvas.width),
+			y:rand(0,myCanvas.height)
+		}
+	}
+	o2d.strokeStyle="red";
+	o2d.beginPath();//开启新的路径
+	o2d.moveTo(pos[0].x,pos[0].y);
+	for(var i=1;i<N;i++){
+		o2d.lineTo(pos[i].x,pos[i].y);
+	}
+	
+	o2d.closePath();//闭合路径  绘制在最后一笔
+	o2d.stroke();
+	
+	
+	
+	
+	
+</script>
