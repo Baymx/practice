@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box{
+				width: 100%;
+				height:auto ;
+			}
+			.show{
+				width: 800px;
+				height: 500px;
+				float: left;
+				position: relative;
+				
+			}
+			#showVideo{
+				position: absolute;
+				left: 0;
+				top: 0;
+				bottom:0 ;
+				right: 0;
+				margin: auto;
+			}
+			#list{
+				float: left;
+				width: 385px;
+				height: auto;
+			}
+			#list video{
+				width: 317px;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="show">
+				<video autoplay controls id="showVideo">
+				</video>
+			</div>
+			<div id="list">
+				<video src="homework/0.mp4"  >
+				</video>
+				<video src="homework/1.mp4" >
+				</video>
+				<video src="homework/2.mp4" >
+				</video>
+			</div>
+			
+		</div>
+	</div>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var index=0;
+		var  list =document.querySelector("#list");
+		var  Videolist=document.querySelectorAll("#list video");
+		var  showVideo =document.querySelector("#showVideo");
+		showVideo.src=Videolist[index].src;
+		list.onclick=function(e){
+			var e =e ||event;
+			var target=e.target||e.srcElement;
+			if(target.nodeName=="VIDEO"){
+				console.log(target);
+				showVideo.src=target.src;
+			}
+		}
+		showVideo.onended=function(){
+			index++;
+			if(index>=Videolist.length){
+				
+			}else{
+				showVideo.src=Videolist[index].src;
+			}
+		}
+	}
+	
+</script>

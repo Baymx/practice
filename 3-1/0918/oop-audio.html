@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<audio src="homework/Matteo - Panama.mp3" controls="controls"></audio>
+		<ul id="list">
+			<li><a href="javascript:;">Panama.mp3</a></li>
+			<li><a href="javascript:;">2</a></li>
+			<li><a href="javascript:;">3</a></li>
+			<li><a href="javascript:;">4</a></li>
+		</ul>
+	</body>
+</html>
+<script>
+	function Audio(){
+		
+	}
+</script>
+<script>
+	window.onload=function(){
+		var data=[
+					{src:Panama.mp3},
+					{src:LikeIWould.mp3},
+					{src:非酋.mp3},
+					{src:Samsara.mp3}
+				];
+		var a =new Audio({
+			data:data,
+			list:document.querySelector("#list"),
+			list:document.querySelector("#list"),
+		});
+		a.init();
+	}
+			
+	
+</script>
