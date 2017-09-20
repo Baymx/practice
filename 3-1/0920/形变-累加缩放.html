@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+				margin: 0 auto;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas height="600" width="1000"></canvas>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var canvas=document.querySelector("canvas");
+		var o2d=canvas.getContext("2d");
+		var x=200,y=200,w=200,h=200,r=100;
+		var s=0;
+		o2d.strokeStyle="aqua";
+		setInterval(function(){
+			 s=s+0.2;
+			o2d.clearRect(0,0,canvas.width,canvas.height);
+			o2d.save();//保存当前画笔状态
+			o2d.translate(x+w/2,y+h/2);
+			o2d.scale(s,s);
+			o2d.strokeRect(-w/2,-h/2,w,h);
+			o2d.restore();//回复上一次保存的画笔状态
+			if(s>=1.5){
+				s=0;
+			}
+			console.log(s)
+		},100)
+		
+		
+	}
+	 function radianAngle(n){
+      return n*Math.PI/180;
+    }
+</script>;

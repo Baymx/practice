@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas height="600" width="1000"></canvas>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var canvas=document.querySelector("canvas");
+		var o2d=canvas.getContext("2d");
+		o2d.fillRect(100,100,100,100);
+		
+		canvas.onclick=function(e){
+			var e =e ||event
+			if(e.pageX>=100&&e.pageX<=200&&e.pageY>=100&&e.pageY<=200){
+				alert("找到了")
+			}
+		}
+	
+	}
+</script>

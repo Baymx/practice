@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas height="600" width="1000"></canvas>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var canvas=document.querySelector("canvas");
+		var o2d=canvas.getContext("2d");
+//		o2d.fillRect(100,100,100,100);
+		var x=200,y=200,r=100;
+		o2d.arc(x,y,r,0,radianAngle(360),false);
+		o2d.stroke();
+		o2d.fill();
+	
+		canvas.onclick=function(e){
+			var e =e ||event
+			var a=e.pageX-x-canvas.offsetLeft;
+			var b=e.pageY-y-canvas.offsetTop;
+			var c=Math.sqrt(a*a+b*b);
+			if(c<r){
+				alert("找到了");
+			}
+		}
+	
+	}
+	 function radianAngle(n){
+      return n*Math.PI/180;
+    }
+</script>

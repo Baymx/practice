@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		  *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      overflow: hidden;
+    }
+    body{
+      background: #000;
+      margin: 0 auto;
+      /*text-align: center;*/
+    }
+    canvas{
+      background: #fff;
+      /*width:800px;
+      hegiht:400px;*/
+    }
+  </style>
+	</head>
+	<body>
+		<canvas id="canvas" height="600px" width="800px"></canvas>
+	</body>
+</html>
+<script>
+	class meizi{
+		constructor(option){
+			this.y=option.y;
+			this.x=option.x;
+			this.od=option.o2d;
+			this.img="";
+			//图片初始位置
+			this.sw=this.dw=32;
+			this.sh=this.dh=48;
+			this.dx=400;
+			this.dy=200;
+			this.sx=this.sy=0;
+		}
+		init(){
+			this.imginit();
+			this.move();
+		}
+		imginit(){
+			this.img = new Image();
+			this.img.src="pic2476.png";
+			this.img.onload=function(){
+				this.od.drawImage(this.img,
+						this.sx,this.sy,this.sw,this.sh,
+						this.dx,this.dy,this.dw,this.dh);
+			}.bind(this);
+		}
+		move(){
+			//向左走
+			if(this.x<this.dx&&this.y>this.dy&&this.y<(this.dy+this.dh)){
+				this.moveleft();
+			}
+			//向右走
+			if(this.x>this.dx+this.dw&&this.y>this.dy&&this.y<(this.dy+this.dh)){
+				this.moveright();
+			}
+			//向上走 
+			if(this.y<this.dy&&this.x>this.dx&&this.x<(this.dx+this.dw)){
+				this.moveup();
+			}
+			//向下走
+			if(this.y>this.dy+this.dh&&this.x>this.dx&&this.x<(this.dx+this.dw)){
+				this.movedown();
+			}
+		}
+		//向左走
+		moveleft(){
+			var n=0;
+			var step=3;
+			setInterval(function(){
+      			this.od.clearRect(0,0,800,600);
+				this.od.drawImage(this.img,
+					this.sx+this.sw*n,this.sy+this.sh,this.sw,this.sh,
+					this.dx-step,this.dy,this.dw,this.dh);
+				console.log(this.sx+this.sw*n)
+				step=step+3;
+				n++;
+				if(n==4){
+					n=0;
+				}
+				
+	      	}.bind(this),100);
+		}
+		//向右走
+		moveright(){
+			var n=0;
+			var step=3;
+			setInterval(function(){
+      			this.od.clearRect(0,0,800,600);
+				this.od.drawImage(this.img,
+					this.sx+this.sw*n,this.sy+this.sh*2,this.sw,this.sh,
+					this.dx+step,this.dy,this.dw,this.dh);
+				console.log(this.sx+this.sw*n)
+				step=step+3;
+				n++;
+				if(n==4){
+					n=0;
+				}
+				
+	      	}.bind(this),100);
+		}
+		//向上走
+		moveup(){
+			var n=0;
+			var step=3;
+			setInterval(function(){
+      			this.od.clearRect(0,0,800,600);
+				this.od.drawImage(this.img,
+					this.sx+this.sw*n,this.sy+this.sh*3,this.sw,this.sh,
+					this.dx,this.dy-step,this.dw,this.dh);
+				console.log(this.sx+this.sw*n)
+				step=step+3;
+				n++;
+				if(n==4){
+					n=0;
+				}
+				
+	      	}.bind(this),100);
+		}
+		//向下走
+		movedown(){
+			var n=0;
+			var step=3;
+			setInterval(function(){
+      			this.od.clearRect(0,0,800,600);
+				this.od.drawImage(this.img,
+					this.sx+this.sw*n,this.sy,this.sw,this.sh,
+					this.dx,this.dy+step,this.dw,this.dh);
+				console.log(this.sx+this.sw*n)
+				step=step+3;
+				n++;
+				if(n==4){
+					n=0;
+				}
+				
+	      	}.bind(this),100);
+		}
+	}
+	
+	var disx="",disy="";
+	var canvas= document.querySelector("#canvas");
+	var o2d=canvas.getContext("2d");
+	
+	canvas.onclick=function(e){
+		var e =e ||event;
+		 disx=e.clientX;
+		 disy=e.clientY;
+		 new meizi({
+			x:disx,
+			y:disy,
+			o2d:o2d
+		}).init();
+	}
+	var mm = new meizi({
+			x:disx,
+			y:disy,
+			o2d:o2d
+		});
+		mm.init();
+		console.log(mm)
+</script>

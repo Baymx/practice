@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" height="600px" width="800px"></canvas>
+	</body>
+</html>
+<script type="text/javascript">
+	var canvas=document.querySelector("#canvas");
+	var o2d=canvas.getContext("2d");
+	var x1=0,y1=0;
+	var x2=canvas.width,y2=canvas.height;
+	var linear =o2d.createLinearGradient(x1,y1,x2,y2);
+	linear.addColorStop(0,"red");
+	linear.addColorStop(1,"blue");
+	o2d.fillStyle=linear;
+	o2d.fillRect(0,0,canvas.width,canvas.height);
+</script>

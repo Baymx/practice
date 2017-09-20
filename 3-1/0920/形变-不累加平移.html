@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas height="600" width="1000"></canvas>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var canvas=document.querySelector("canvas");
+		var o2d=canvas.getContext("2d");
+		var x=100,y=100,w=100,h=100;
+		setInterval(function(){
+			o2d.clearRect(0,0,canvas.width,canvas.height);
+			o2d.translate(1,0);
+			o2d.fillRect(x,y,w,h);
+		},16)
+		
+		
+	}
+</script>

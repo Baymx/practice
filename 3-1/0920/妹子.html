@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>666</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      overflow: hidden;
+    }
+    body{
+      background: #000;
+      /*text-align: center;*/
+    }
+    canvas{
+      background: #fff;
+      /*width:800px;
+      hegiht:400px;*/
+    }
+    span{
+      color:#fff;
+    }
+  </style>
+
+  <script>
+   
+    //端点，接洽点
+    window.onload = function () {
+      var oC = document.getElementById('c1');
+      var gd = oC.getContext('2d'); //画笔
+      
+      var img = new Image();
+      img.src="coinAni2.png";
+      img.onload=function(){
+      	var n=0;
+      	setInterval(function(){
+      		gd.clearRect(0,0,oC.width,oC.height);
+//    		gd.drawImage(图片对象,x,y)  x y 绘制到的画布位置
+//				gd.drawImage(图片对象,x,y,w,h)  w h  绘制多大
+					gd.drawImage(this,
+						0,60*n,60,60,
+						100,100,60,60
+					)
+					n++;
+					if(n==10){
+						n=0;
+					}
+      	}.bind(this),16);
+      }
+      
+    }
+  </script>
+</head>
+<body>
+
+<canvas  id="c1" width="800" height="400">
+  <span>您的浏览器版本太低</span>
+</canvas>
+
+</body>
+</html>

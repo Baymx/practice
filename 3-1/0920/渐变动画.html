@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>666</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      overflow: hidden;
+    }
+    body{
+      background: #000;
+      /*text-align: center;*/
+    }
+    canvas{
+      background: #fff;
+      /*width:800px;
+      hegiht:400px;*/
+    }
+    span{
+      color:#fff;
+    }
+  </style>
+
+  <script>
+    function rnd(n,m){
+      return parseInt(Math.random()*(m-n))+n;
+    }
+    function fillzero(n){
+      return n<10?'0'+n:''+n;
+    }
+    function d2a(n){
+      return n*Math.PI/180;
+    }
+    function a2d(n){
+      return n*180/Math.PI;
+    }
+    //端点，接洽点
+    window.onload = function () {
+      var oC = document.getElementById('c1');
+      var gd = oC.getContext('2d'); //画笔
+
+//    var w=oC.width,h=oC.height;
+  		var x=100,y=100,w=200,h=100;
+    	var x1=x2=100,y1=y2=100;
+			var r1=100,r2=200;
+			var radial =gd.createRadialGradient(x1,y1,r1,x2,y2,r2);
+    
+
+
+//    var radial = gd.createRadialGradient(x1,y1,r1,x2,y2,r2);
+      radial.addColorStop(0,'red');
+      radial.addColorStop(0.5,'blue');
+      radial.addColorStop(1,'yellow');
+      gd.fillStyle=radial;
+
+
+//      gd.fillRect(x,y,w,h);
+//    gd.fillRect(0,0,oC.width,oC.height);
+
+      var d=0;
+      setInterval(function(){
+        gd.clearRect(0,0,oC.width,oC.height);
+        gd.save();
+        gd.translate(x+w/2,y+h/2);
+        gd.rotate(d2a(d++));
+        gd.fillRect(-w/2,-h/2,w,h);
+        gd.restore();
+      },16);
+    }
+  </script>
+</head>
+<body>
+
+<canvas  id="c1" width="800" height="400">
+  <span>您的浏览器版本太低</span>
+</canvas>
+
+</body>
+</html>

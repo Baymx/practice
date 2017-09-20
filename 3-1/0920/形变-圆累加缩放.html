@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			canvas{
+				background: #FFFFFF;
+				margin: 0 auto;
+			}
+			body{
+				background: #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas height="600" width="1000"></canvas>
+	</body>
+</html>
+<script>
+	window.onload=function(){
+		var canvas=document.querySelector("canvas");
+		var o2d=canvas.getContext("2d");
+		var x=200,y=200,w=200,h=200,r=100;
+		var s=0;
+		o2d.fillStyle="aqua";
+		setInterval(function(){
+			o2d.clearRect(0,0,canvas.width,canvas.height);
+			o2d.beginPath();
+			s=s+0.2;
+			o2d.arc(x,y,r*s,0,radianAngle(360),false);
+			o2d.fill();
+			if(s>=1.5){
+				s=0;
+			}
+		},50)
+		
+		
+	}
+	 function radianAngle(n){
+      return n*Math.PI/180;
+    }
+</script>;
